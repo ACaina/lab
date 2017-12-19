@@ -85,6 +85,10 @@ public class menuControlador {
     public void frmProblema() {
         this.ruta = "faces/vista/vProblema.xhtml";
     }
+    
+    public void frmInvolucrado() {
+        this.ruta = "faces/vista/vInvolucrado.xhtml";
+    }
     /**
      * Creates a new instance of menuControlador
      */

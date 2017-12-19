@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../formulario/frmInvolucrado.xhtml">
+
+            <ui:define name="=dialogos">
+                <p:dialog id="dlgNuevoInvolucrado" header="Nuevo Involucrado" 
+                          widgetVar="wdlgNuevoInvolucrado" resizable="false" 
+                          showEffect="fade" hideEffect="explode" modal="true">  
+                    <h:form id="frmNuevoInvolucrado">
+                        <p:panelGrid  columns="2">
+                            <h:outputText style="font-weight: bold" value="Nombre:" />
+                            <p:inputText value="#{cInvolucrado.objInvolucradonew.nombre_involucrado}"/>
+                            <h:outputText style="font-weight: bold" value="Que Hacer:" />
+                            <p:inputText value="#{cInvolucrado.objInvolucradonew.quehacer}"/>
+                            <h:outputText style="font-weight: bold" value="Interes:" />
+                            <p:inputText value="#{cInvolucrado.objInvolucradonew.interes}"/>
+                            <h:outputText style="font-weight: bold" value="Fortalezas:" />
+                            <p:inputText value="#{cInvolucrado.objInvolucradonew.fortalezas}"/>
+                            <h:outputText style="font-weight: bold" value="Limitaciones:" />
+                            <p:inputText value="#{cInvolucrado.objInvolucradonew.limitaciones}"/>
+                            <h:outputText style="font-weight: bold" value="Tipo:" />
+                            <p:selectOneMenu id="cbtpd" value="#{cInvolucrado.objInvolucradonew.tipo}" style="width: 340px" required="true">
+                                   <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                                    <f:selectItem itemLabel="Directo" itemValue="Directo" />
+                                    <f:selectItem itemLabel="Indirecto" itemValue="Indirecto" />
+                            </p:selectOneMenu>
+                            
+                            
+                            <f:facet name="footer">
+                                <center>
+                                    <p:commandButton id="btnCreateAceptar" update=":frmInvolucrado:tblInvolucrado" oncomplete="wdlgNuevoInvolucrado.hide()" actionListener="#{cInvolucrado.ingresarInvolucrado()}" icon="ui-icon-disk" value="Guardar" title="Guardar"/>
+                                    <p:commandButton id="btnCreateCancelar" onclick="wdlgNuevoInvolucrado.hide()" icon="ui-icon-close" value="Cancelar" title="Cancelar" type="reset"/>
+                                </center>
+                            </f:facet>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="dlgModificarInvolucrado" header="Modificar Involucrado" 
+                          widgetVar="wdlgModificarInvolucrado" resizable="false" 
+                          showEffect="fade" hideEffect="explode" modal="true">  
+                    <h:form id="frmModificarInvolucrado">
+                        <p:panelGrid  columns="2">
+                            <h:outputText style="font-weight: bold" value="Id: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.id_involucrado}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Nombre: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.nombre_involucrado}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Que Hacer: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.quehacer}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Interes: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.interes}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Fortalezas: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.fortalezas}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Limitaciones: " />
+                            <p:inputText value="#{cInvolucrado.objInvolucradosel.limitaciones}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <h:outputText style="font-weight: bold" value="Tipo: " />
+                            <p:selectOneMenu id="cbtpd" value="#{cInvolucrado.objInvolucradosel.tipo}" style="width: 340px" required="true">
+                                   <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                                    <f:selectItem itemLabel="Directo" itemValue="Directo" />
+                                    <f:selectItem itemLabel="Indirecto" itemValue="Indirecto" />
+                            </p:selectOneMenu>
+                            
+                            <f:facet name="footer">
+                                
+                                <center>
+                                    <p:commandButton id="btnModifyAceptar" update=":frmInvolucrado:tblInvolucrado" oncomplete="wdlgModificarInvolucrado.hide()" actionListener="#{cInvolucrado.modificarInvolucrado()}" icon="ui-icon-disk" value="Guardar" title="Guardar"/>
+                                    <p:commandButton id="btnModifyCancelar" onclick="wdlgModificarInvolucrado.hide()" icon="ui-icon-close" value="Cancelar" title="Cancelar" type="reset"/>
+                                </center>
+                            </f:facet>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+                <p:dialog id="dlgEliminarInvolucrado" header="Eliminar Involucrado" 
+                          widgetVar="wdlgEliminarInvolucrado" resizable="false" 
+                          showEffect="fade" hideEffect="explode" modal="true">  
+                    <h:form id="frmEliminarInvolucrado">
+                        <p:panelGrid  columns="2">
+                            <h:outputText style="font-weight: bold" value="Id: " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.id_involucrado}"/>
+                            <h:outputText style="font-weight: bold" value="Nombre:" />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.nombre_involucrado}"/>
+                            <h:outputText style="font-weight: bold" value="Que hace " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.quehacer}"/>
+                            <h:outputText style="font-weight: bold" value="Interes " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.interes}"/>
+                            <h:outputText style="font-weight: bold" value="Fortalezas " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.fortalezas}"/>
+                            <h:outputText style="font-weight: bold" value="Limitacion " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.limitaciones}"/>
+                            <h:outputText style="font-weight: bold" value="Tipo " />
+                            <h:outputText value="#{cInvolucrado.objInvolucradosel.tipo}"/>
+                            
+                            <f:facet name="footer">
+                                <center>
+                                    <p:commandButton id="btnDeleteAceptar" update=":frmInvolucrado:tblInvolucrado" oncomplete="wdlgEliminarInvolucrado.hide()" actionListener="#{cInvolucrado.eliminarInvolucrado()}" icon="ui-icon-check" value="Aceptar" title="Aceptar"/>
+                                    <p:commandButton id="btnDeleteCancelar" onclick="wdlgEliminarInvolucrado.hide()" icon="ui-icon-close" value="Cancelar" title="Cancelar" type="reset"/>
+                                </center>
+                            </f:facet>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

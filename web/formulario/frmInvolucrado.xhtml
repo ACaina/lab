@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <title>Involucrado</title>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage=" true">
+            <p:layoutUnit position="north">
+                <ui:insert name="=top">
+                    Administración de Involucrado
+                </ui:insert>
+            </p:layoutUnit> 
+            <p:layoutUnit position="center">
+                <ui:insert name="=content">
+                    <p:growl id="msgs" showDetail="true"/>  
+                    <h:form id="frmInvolucrado">
+                        <p:panelGrid columns="2" id="pnl" style="width: 1000px; height: 300px">
+                            <p:dataTable id="tblInvolucrado" var="objinv" value="#{cInvolucrado.lstInvolucrado}" 
+                                         rows="10" emptyMessage="Sin datos">
+                                <f:facet name="header">
+                                    Involucrado
+                                </f:facet>
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{objinv.id_involucrado}"/>
+                                </p:column>
+                               <p:column headerText="Nombre">
+                                   <h:outputText value="#{objinv.nombre_involucrado}"/>
+                                </p:column>
+                                <p:column headerText="Que Hacer">
+                                    <h:outputText value="#{objinv.quehacer}"/>
+                                </p:column>
+                                <p:column headerText="Interes">
+                                    <h:outputText value="#{objinv.interes}"/>
+                                </p:column>
+                                <p:column headerText="Fortalezas">
+                                    <h:outputText value="#{objinv.fortalezas}"/>
+                                </p:column>
+                                <p:column headerText="Limitaciones">
+                                    <h:outputText value="#{objinv.limitaciones}"/>
+                                </p:column>
+                                <p:column headerText="Tipo">
+                                    <h:outputText value="#{objinv.tipo}"/>
+                                </p:column>
+                                
+                                
+                                <!--   botones  -->
+                                <p:column headerText="Modificar" style="width:32px;text-align: center">
+                                    <p:commandButton update=":frmModificarInvolucrado" oncomplete="wdlgModificarInvolucrado.show()" icon="ui-icon-pencil" title="Modificar">
+                                        <f:setPropertyActionListener value="#{objinv}" target="#{cInvolucrado.objInvolucradosel}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column headerText="Eliminar" style="width:32px;text-align: center">
+                                    <p:commandButton update=":frmEliminarInvolucrado" oncomplete="wdlgEliminarInvolucrado.show()" icon="ui-icon-close" title="Eliminar">
+                                        <f:setPropertyActionListener value="#{objinv}" target="#{cInvolucrado.objInvolucradosel}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnNuevoInvolucrado" update=":msgs" onclick="PF('wdlgNuevoInvolucrado').show()" icon="ui-icon-document" value="Nuevo Involucrado" title="Nuevo Involucrado"/>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panelGrid>
+                    </h:form>
+                </ui:insert>
+            </p:layoutUnit> 
+        </p:layout>
+        <ui:insert name="=dialogos">    dialogos     </ui:insert>
+
+    </h:body>
+
+</html>
