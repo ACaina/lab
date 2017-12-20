@@ -20,12 +20,15 @@
                             <h:outputText style="font-weight: bold" value="Decricpión:" />
                             <p:inputText value="#{cProblema.objProblemanew.descripcion}"/> 
                             <h:outputText style="font-weight: bold" value="ID Causa:" />
-                             <p:selectOneMenu id="cbtpd" value="#{cProblema.objProblemanew.id_causa}" style="width: 340px" required="true">
+                            <p:selectOneMenu id="cbtpd" value="#{cProblema.objProblemanew.id_causa}" style="width: 340px" required="true">
                                 <f:selectItem itemLabel="Seleccione Causa" itemValue="#{null} "/>
                                 <f:selectItems value="#{cCausa.lstCausa}" var="objCar" itemLabel="#{objCar.nombre_causa}" itemValue="#{objCar.id_causa}"/>
                             </p:selectOneMenu>
                             <h:outputText style="font-weight: bold" value="ID Involucrado:" />
-                            <p:inputText value="#{cProblema.objProblemanew.id_involucrado}"/>
+                            <p:selectOneMenu id="cbtpdii" value="#{cInvolucrado.objInvolucradonew.id_involucrado}" style="width: 340px" required="true">
+                                <f:selectItem itemLabel="Seleccione Involucrado" itemValue="#{null} "/>
+                                <f:selectItems value="#{cInvolucrado.lstInvolucrado}" var="objCar" itemLabel="#{objCar.nombre_involucrado}" itemValue="#{objCar.id_involucrado}"/>
+                            </p:selectOneMenu>
                             <f:facet name="footer">
                                 <center>
                                     <p:commandButton id="btnCreateAceptar" update=":frmProblema:tblProblema" oncomplete="wdlgNuevoProblema.hide()" actionListener="#{cProblema.ingresarProblema()}" icon="ui-icon-disk" value="Guardar" title="Guardar"/>
@@ -51,7 +54,10 @@
                                 <f:selectItems value="#{cCausa.lstCausa}" var="objCar" itemLabel="#{objCar.nombre_causa}" itemValue="#{objCar.id_causa}"/>
                             </p:selectOneMenu>
                             <h:outputText style="font-weight: bold" value="ID Involucrado: " />
-                            <p:inputText value="#{cProblema.objProblemasel.id_involucrado}" required="true" requiredMessage="Es necesario una descripción" style="width: 250px"/>
+                            <p:selectOneMenu id="cbtpdii" value="#{cProblema.objProblemasel.id_involucrado}" style="width: 340px" required="true">
+                                <f:selectItem itemLabel="Seleccione Involucrado" itemValue="#{null} "/>
+                                <f:selectItems value="#{cInvolucrado.lstInvolucrado}" var="objCar" itemLabel="#{objCar.nombre_involucrado}" itemValue="#{objCar.id_involucrado}"/>
+                            </p:selectOneMenu>
                             <f:facet name="footer">
                                 
                                 <center>

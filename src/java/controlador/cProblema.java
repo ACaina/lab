@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import entidades.actividad;
 import entidades.problema;
 import java.util.ArrayList;
 import java.util.logging.Level;
